@@ -12,7 +12,7 @@ public class NetUtils {
 
     private static final String LOCAL_HOST = "127.0.0.1";
     private static final String ANY_HOST = "0.0.0.0";
-    public static final Pattern IP_PATTERN = Pattern.compile("\\d{1,3}(\\.\\d{1,3}){3}$");
+    private static final Pattern IP_PATTERN = Pattern.compile("\\d{1,3}(\\.\\d{1,3}){3}$");
 
 
     public static String getHostAddressFromInterface(){
@@ -39,12 +39,12 @@ public class NetUtils {
         return null;
     }
 
-    public static boolean isValidHostAddress(String hostAddress){
+    private static boolean isValidHostAddress(String hostAddress){
 
-        boolean is =  IP_PATTERN.matcher(hostAddress).matches();
-
-        return (null != hostAddress) && !LOCAL_HOST.equals(hostAddress)
-                && !ANY_HOST.equals(hostAddress) && is;
+        return (null != hostAddress)
+                && !LOCAL_HOST.equals(hostAddress)
+                && !ANY_HOST.equals(hostAddress)
+                && IP_PATTERN.matcher(hostAddress).matches();
     }
 
 }
